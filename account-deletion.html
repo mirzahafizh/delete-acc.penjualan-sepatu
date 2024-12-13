@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permintaan Penghapusan Akun</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #8802a3;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #5f0176;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Permintaan Penghapusan Akun</h1>
+    <form id="deletionForm">
+      <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="reason">Alasan Penghapusan:</label>
+        <textarea id="reason" name="reason" rows="4" required></textarea>
+      </div>
+      <button type="submit">Ajukan Permintaan</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('deletionForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const reason = document.getElementById('reason').value;
+
+      // Encode pesan untuk WhatsApp
+      const waMessage = encodeURIComponent(
+        `Permintaan Penghapusan Akun:\n\nNama: ${name}\nEmail: ${email}\nAlasan: ${reason}`
+      );
+
+      // Nomor tujuan WhatsApp
+      const waNumber = '6282154170626';
+
+      // Redirect ke WhatsApp
+      const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+      window.open(waLink, '_blank');
+    });
+  </script>
+</body>
+</html>
